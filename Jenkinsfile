@@ -9,17 +9,18 @@ pipeline {
     }
 
     stage('Setup venv + deps') {
-      steps {
-        sh '''
-          python3 -m venv ${VENV}
-          . ${VENV}/bin/activate
-          pip install --upgrade pip
-          pip install -r app/requirements.txt
-          pip install pytest bandit pip-audit ansible
-          mkdir -p reports
-        '''
-      }
-    }
+  steps {
+    sh '''
+      rm -rf ${VENV}
+      python3 -m venv ${VENV}
+      . ${VENV}/bin/activate
+      pip install --upgrade pip
+      pip install -r app/requirements.txt
+      pip install -U pytest bandit pip-audit ansible
+      mkdir -p reports
+    '''
+  }
+}
 
     stage('Build') {
       steps {
