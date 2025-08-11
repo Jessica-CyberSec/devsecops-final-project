@@ -57,7 +57,7 @@ pipeline {
 
     stage('Deploy with Ansible') {
       steps {
-        sh '. ${VENV}/bin/activate; ansible-playbook ansible/deploy.yml -i ansible/inventory.ini'
+        sh '. ${VENV}/bin/activate; ansible-playbook ansible/deploy.yml -i ansible/inventory.ini -e @ansible/vars.yml'
       }
     }
   }
