@@ -28,8 +28,9 @@
 
     - name: Deploy systemd service
       template:
-        src: "app.service.j2"
-        dest: /etc/systemd/system/app.service
+        src: "templates/app.service.j2"
+        dest: /etc/systemd/system/devsecops-app.service
+        mode: "0644"
 
     - name: Reload systemd
       command: systemctl daemon-reload

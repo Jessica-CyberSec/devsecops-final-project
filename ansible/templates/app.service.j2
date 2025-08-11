@@ -1,0 +1,14 @@
+[Unit]
+Description=DevSecOps Demo App (Flask)
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory={{ app_dir }}
+Environment="APP_HOST=0.0.0.0" "APP_PORT={{ app_port }}"
+ExecStart=/usr/bin/python3 app.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
