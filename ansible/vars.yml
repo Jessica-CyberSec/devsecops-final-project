@@ -1,2 +1,7 @@
-app_dir: /home/ubuntu/devsecops-app
+app_dir: /opt/devsecops-app
 app_port: 5000
+service_name: devsecops-app
+service_unit_path: /etc/systemd/system/devsecops-app.service
+run_user: ubuntu
+python_path: /usr/bin/python3
+
