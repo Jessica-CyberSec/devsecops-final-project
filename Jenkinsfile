@@ -1,5 +1,4 @@
 pipeline {
-<<<<<<< Updated upstream
     agent any
     stages {
         stage('Build') {
@@ -27,7 +26,6 @@ pipeline {
                 sh 'ansible-playbook ansible/deploy.yml -i ansible/inventory.ini'
             }
         }
-=======
   agent any
   environment { VENV = '.venv' }
   options { ansiColor('xterm'); timestamps() }
@@ -89,7 +87,6 @@ pipeline {
   post {
     always {
       sh 'rm -rf ${VENV} || true'
->>>>>>> Stashed changes
     }
   }
 }
