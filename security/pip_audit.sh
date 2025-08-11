@@ -1,4 +1,5 @@
 #!/bin/bash
 set -e
-pip install pip-audit
-pip-audit -r app/requirements.txt
+python3 -m pip install --user pip-audit
+python3 -m pip_audit -r app/requirements.txt
+
