@@ -29,13 +29,20 @@ pipeline {
     }
 
     stage('Test') {
-      steps {
-        sh '. ${VENV}/bin/activate; pytest app/tests --junitxml=reports/pytest.xml || true'
-      }
-      post {
-        always { junit 'reports/pytest.xml' }
-      }
+  steps {
+    sh '''
+      . .venv/bin/activate
+      export PYTHONPATH=$PWD
+      python -m pytest app/tests --junitxml=reports/pytest.xml
+    '''
+  }
+  post {
+    always {
+      junit 'reports/pytest.xml'
     }
+  }
+}
+
 
     stage('SAST - Bandit') {
       steps {
