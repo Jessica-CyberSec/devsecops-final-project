@@ -3,22 +3,22 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'pip install -r app/requirements.txt'
+                sh 'python3 -m pip install --user -r app/requirements.txt'
             }
         }
         stage('Test') {
             steps {
-                sh 'pytest app/tests'
+                sh 'python3 -m pytest app/tests'
             }
         }
         stage('SAST - Bandit') {
             steps {
-                sh './security/bandit_scan.sh'
+                sh 'python3 -m pip install --user bandit && python3 -m bandit -r app'
             }
         }
         stage('Dependency Scan - pip-audit') {
             steps {
-                sh './security/pip_audit.sh'
+                sh 'python3 -m pip install --user pip-audit && python3 -m pip_audit -r app/requirements.txt'
             }
         }
         stage('Deploy with Ansible') {
@@ -28,4 +28,5 @@ pipeline {
         }
     }
 }
+
 
